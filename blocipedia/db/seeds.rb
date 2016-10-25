@@ -26,14 +26,14 @@ include Faker
 
   users = User.all
 
-  15.times do
+  25.times do
     Article.create!(
       title: Faker::Lorem.sentence,
-      body: Faker::Lorem.paragraph,
+      text: Faker::Lorem.paragraph,
       user: users.sample
     )
   end
-  Article = Artilce.all
+  Article = Article.all
 
 
 puts "Seed finished"
