@@ -15,7 +15,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def destroy?
-    article.user == user
+    user.role == 'admin' || record.user == user
   end
   
   def new?
@@ -42,7 +42,7 @@ class ArticlePolicy < ApplicationPolicy
       elsif user.role = 'premium'
         premium_articles = scope.all
         premium_articles.each do |article|
-          if article.user == user
+          if !article.private? || article.user == user
             articles << article
           end
         end
@@ -50,7 +50,7 @@ class ArticlePolicy < ApplicationPolicy
         standard_articles = scope.all
         articles = [ ]
         standard_articles.each do |article|
-          if article.user == user
+          if !article.private?
             articles << article
           end
         end

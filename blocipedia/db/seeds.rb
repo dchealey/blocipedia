@@ -16,6 +16,7 @@ include Faker
   User.create!(
   email:    'standard@users.com',
   password: 'BlocTest',
+  role:     'standard',
   )
 
   User.create!(
@@ -34,6 +35,12 @@ include Faker
     )
   end
   Article = Article.all
+
+  Article.create!(
+    title:    'Private Article',
+    text:     'This article is private and should not be viewed by standard users.',
+    private:  true,
+  )
 
 
 puts "Seed finished"

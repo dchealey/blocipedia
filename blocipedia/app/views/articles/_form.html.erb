@@ -27,5 +27,12 @@
   <p>
     <%= f.submit %>
   </p>
- 
+
+  <% if current_user.admin? || current_user.premium? %>
+    <div class="form-group">
+      <%= f.label :private, class: 'checkbox' do %>
+      <%= f.check_box :private %> Private
+    <% end %>
+  </div>
+  <% end %>
 <% end %>
