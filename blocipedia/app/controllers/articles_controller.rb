@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+    include ApplicationHelper
+    
     def index
         @articles = policy_scope(Article)
     end

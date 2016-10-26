@@ -1,11 +1,11 @@
 <p>
   <strong>Title:</strong>
-  <%= @article.title %>
+  <%= markdown(@article.title) %>
 </p>
  
 <p>
   <strong>Text:</strong>
-  <%= @article.text %>
+  <%= markdown(@article.text) %>
 </p>
 
 <%= link_to 'Edit', edit_article_path(@article) %>
