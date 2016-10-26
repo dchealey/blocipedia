@@ -35,4 +35,9 @@
     <% end %>
   </div>
   <% end %>
+  
+  <% if @article.private %>
+     <%= render partial: 'collaborators/form', locals: { f: f } %>
+  <% end %>
+
 <% end %>

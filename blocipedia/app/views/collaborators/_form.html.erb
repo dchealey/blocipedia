@@ -1,0 +1,17 @@
+<% if @article.user_id == current_user.id || current_user.admin? %>
+	<div class="form-group">
+		<% @users.each do |user| %>
+			<h4><%= user.email %> </h4>
+
+			<% if @article.users.include? user %>
+				<div>
+				<%= link_to "Remove Collaborator", article_collaborator_path(@article, @article.collaborators.find_by_user_id(user.id).id), method: :delete, class: 'btn btn-danger' %>
+				</div>
+			<% else %>
+				<div>
+				<%= link_to "Add Collaborator", article_collaborators_path(@article, user_id: user.id), method: :post, class: 'btn btn-info' %>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+<% end %>

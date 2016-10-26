@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026041119) do
+ActiveRecord::Schema.define(version: 20161026073619) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20161026041119) do
     t.integer  "user_id"
     t.boolean  "private"
   end
+
+  create_table "collaborators", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "collaborators", ["article_id"], name: "index_collaborators_on_article_id"
+  add_index "collaborators", ["user_id"], name: "index_collaborators_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

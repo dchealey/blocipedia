@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :articles
+  has_many :collaborators
+  has_many :articles, through: :collaborators
   
   before_save { self.email = email.downcase }
   before_save { self.role ||= :standard }

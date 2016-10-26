@@ -18,6 +18,8 @@ class ArticlesController < ApplicationController
 
     def edit
         @article = Article.find(params[:id])
+        @users = User.all
+        @collaborator = Collaborator.new
         authorize @article
     end        
 

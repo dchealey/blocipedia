@@ -27,11 +27,11 @@ class UsersController < ApplicationController
       flash[:error] = "Error. Please try again."
       redirect_to :back
     end
-  end
   
     @private_articles = @user.articles.where(private: true)
 
     @private_articles.each do |downgrade|
       downgrade.update_attributes(private: false)
+    end
   end
 end

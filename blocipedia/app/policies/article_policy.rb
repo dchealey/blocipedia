@@ -42,7 +42,7 @@ class ArticlePolicy < ApplicationPolicy
       elsif user.role = 'premium'
         premium_articles = scope.all
         premium_articles.each do |article|
-          if !article.private? || article.user == user
+          if !article.private? || article.user == user || article.collaborators.include?(user)
             articles << article
           end
         end
@@ -50,7 +50,7 @@ class ArticlePolicy < ApplicationPolicy
         standard_articles = scope.all
         articles = [ ]
         standard_articles.each do |article|
-          if !article.private?
+          if !article.private? || article.collaborators.include?(user)
             articles << article
           end
         end
